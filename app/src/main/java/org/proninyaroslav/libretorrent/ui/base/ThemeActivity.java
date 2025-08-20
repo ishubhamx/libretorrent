@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.SystemBarStyle;
@@ -52,9 +51,7 @@ public abstract class ThemeActivity extends AppCompatActivity implements SharedP
         int themeResId = R.style.AppTheme;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (pref.dynamicColors()) {
-                Log.w("ThemeActivity", "Dynamic colors");
                 if (pref.blackBackgrounds()) {
-                    Log.w("ThemeActivity", "Black background");
                     themeResId = R.style.AppTheme_Black;
                 }
             } else {
