@@ -404,6 +404,7 @@
     <string name="pref_header_scheduling">Scheduling</string>
     <string name="pref_header_feed">RSS</string>
     <string name="pref_header_streaming">Streaming</string>
+    <string name="pref_header_legal">Legal &amp; Compliance</string>
     <!-- Storage settings -->
     <string name="pref_save_torrents_in_title">Save torrents in…</string>
     <string name="pref_move_after_download_title">Move after download</string>
@@ -603,6 +604,10 @@
     <string name="pref_streaming_hostname">Hostname</string>
     <string name="pref_streaming_port">Port</string>
     <string name="pref_streaming_error">Select a port or hostname for streaming that isn\'t busy or incorrect.</string>
+    <!-- Legal & Compliance -->
+    <string name="pref_legal_disclaimer_title">Legal Disclaimer</string>
+    <string name="pref_legal_disclaimer_summary">Important information about responsible use</string>
+    <string name="pref_legal_disclaimer_text">This application is a torrent client designed for downloading and sharing files using the BitTorrent protocol. It is intended for legal purposes only.\n\n• This app is a neutral tool for accessing publicly available torrent metadata and files\n• Users are solely responsible for the content they download and share\n• Do not use this app to download or distribute copyrighted material without authorization\n• Always respect intellectual property rights and applicable laws in your jurisdiction\n• The developers are not responsible for how users choose to use this software\n\nBy using this application, you acknowledge that you understand and will comply with all applicable laws and regulations.</string>
     <!-- About dialog -->
     <string name="about_title">About</string>
     <string name="about_description">More info and how to help the project: &lt;a href=https://gitlab.com/proninyaroslav/libretorrent&gt;https://gitlab.com/proninyaroslav/libretorrent&lt;/a&gt;&lt;br&gt;&lt;br&gt; LibreTorrent is a copylefted libre (&lt;a href=https://www.gnu.org/copyleft/gpl.html&gt;GPLv3+&lt;/a&gt;) torrent client for Android 4+, based on the libtorrent (Java wrapper &lt;a href=https://github.com/aldenml/libtorrent4j&gt;libtorrent4j&lt;/a&gt;) lib.&lt;br&gt;&lt;br&gt;</string>

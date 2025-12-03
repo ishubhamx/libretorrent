@@ -28,6 +28,9 @@
     <action
         android:id="@+id/action_streaming_settings"
         app:destination="@id/streamingSettingsFragment" />
+    <action
+        android:id="@+id/action_legal_settings"
+        app:destination="@id/legalSettingsFragment" />
 
     <fragment
         android:id="@+id/appearanceSettingsFragment"
@@ -120,4 +123,8 @@
         android:id="@+id/streamingSettingsFragment"
         android:name="org.proninyaroslav.libretorrent.ui.settings.pages.StreamingSettingsFragment"
         android:label="StreamingSettingsFragment" />
+    <fragment
+        android:id="@+id/legalSettingsFragment"
+        android:name="org.proninyaroslav.libretorrent.ui.settings.pages.LegalSettingsFragment"
+        android:label="LegalSettingsFragment" />
 </navigation>

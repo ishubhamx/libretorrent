@@ -50,7 +50,8 @@ class DatabaseMigration
                 MIGRATION_5_6,
                 MIGRATION_6_7,
                 MIGRATION_7_8,
-                MIGRATION_8_9
+                MIGRATION_8_9,
+                MIGRATION_9_10
         };
     }
 
@@ -110,6 +111,28 @@ class DatabaseMigration
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE `Torrent` ADD COLUMN `firstLastPiecePriority` INTEGER NOT NULL DEFAULT 0");
+        }
+    };
+
+    static final Migration MIGRATION_9_10 = new Migration(9, 10) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            // Create ErrorLog table for better error tracking and diagnostics
+            database.execSQL("CREATE TABLE IF NOT EXISTS `ErrorLog` (" +
+                    "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    "`errorType` TEXT NOT NULL, " +
+                    "`errorMessage` TEXT NOT NULL, " +
+                    "`stackTrace` TEXT, " +
+                    "`source` TEXT NOT NULL, " +
+                    "`timestamp` INTEGER NOT NULL, " +
+                    "`retryCount` INTEGER NOT NULL, " +
+                    "`additionalData` TEXT)");
+            
+            // Create index for efficient querying by timestamp
+            database.execSQL("CREATE INDEX IF NOT EXISTS `index_ErrorLog_timestamp` ON `ErrorLog` (`timestamp`)");
+            
+            // Create index for efficient querying by source
+            database.execSQL("CREATE INDEX IF NOT EXISTS `index_ErrorLog_source` ON `ErrorLog` (`source`)");
         }
     };
 
