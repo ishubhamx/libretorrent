@@ -108,9 +108,7 @@ public class OnboardingActivity extends ThemeActivity
     public void onChooseStorageLocation() {
         // Placeholder - storage selection will be added in future iteration
         // For now, users can change it in settings after onboarding
-        Toast.makeText(this, 
-            "You can configure storage location in Settings after completing setup", 
-            Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.onboarding_storage_location_info, Toast.LENGTH_LONG).show();
     }
 
     @Override

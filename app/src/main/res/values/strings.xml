@@ -650,6 +650,7 @@
     <string name="onboarding_wifi_only_description">Download files only when connected to Wi-Fi to save mobile data</string>
     <string name="onboarding_storage_location_title">Default Storage Location</string>
     <string name="onboarding_storage_location_description">Choose where to save downloaded files</string>
+    <string name="onboarding_storage_location_info">You can configure storage location in Settings after completing setup</string>
     <string name="onboarding_get_started">Get Started</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_skip">Skip</string>
