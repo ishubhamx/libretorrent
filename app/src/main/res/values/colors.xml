@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="branding_color">#9C27B0</color>
-    <color name="md_theme_primary">#68548E</color>
+    <color name="branding_color">#00897B</color>
+    <color name="md_theme_primary">#00796B</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
-    <color name="md_theme_primaryContainer">#EBDDFF</color>
-    <color name="md_theme_onPrimaryContainer">#4F3D74</color>
+    <color name="md_theme_primaryContainer">#B2DFDB</color>
+    <color name="md_theme_onPrimaryContainer">#004D40</color>
     <color name="md_theme_secondary">#635B70</color>
     <color name="md_theme_onSecondary">#FFFFFF</color>
     <color name="md_theme_secondaryContainer">#E9DEF8</color>

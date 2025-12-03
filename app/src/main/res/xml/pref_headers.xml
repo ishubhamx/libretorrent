@@ -47,4 +47,10 @@
         android:key="@string/pref_key_streaming_settings"
         android:persistent="false"
         android:title="@string/pref_header_streaming" />
+
+    <Preference
+        android:icon="@drawable/ic_info_24px"
+        android:key="@string/pref_key_legal_settings"
+        android:persistent="false"
+        android:title="@string/pref_header_legal" />
 </PreferenceScreen>

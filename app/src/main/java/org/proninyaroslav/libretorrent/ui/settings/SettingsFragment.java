@@ -40,6 +40,7 @@ import org.proninyaroslav.libretorrent.databinding.FragmentSettingsHeaderBinding
 import org.proninyaroslav.libretorrent.ui.settings.pages.AppearanceSettingsFragmentDirections;
 import org.proninyaroslav.libretorrent.ui.settings.pages.BehaviorSettingsFragmentDirections;
 import org.proninyaroslav.libretorrent.ui.settings.pages.FeedSettingsFragmentDirections;
+import org.proninyaroslav.libretorrent.ui.settings.pages.LegalSettingsFragmentDirections;
 import org.proninyaroslav.libretorrent.ui.settings.pages.LimitationsSettingsFragmentDirections;
 import org.proninyaroslav.libretorrent.ui.settings.pages.NetworkSettingsFragmentDirections;
 import org.proninyaroslav.libretorrent.ui.settings.pages.SchedulingSettingsFragmentDirections;
@@ -145,6 +146,8 @@ public class SettingsFragment extends AbstractListDetailFragment {
             action = FeedSettingsFragmentDirections.actionFeedSettings();
         } else if (key.equals(getString(R.string.pref_key_streaming_settings))) {
             action = StreamingSettingsFragmentDirections.actionStreamingSettings();
+        } else if (key.equals(getString(R.string.pref_key_legal_settings))) {
+            action = LegalSettingsFragmentDirections.actionLegalSettings();
         } else {
             throw new IllegalArgumentException("Unknown preference key: " + key);
         }
