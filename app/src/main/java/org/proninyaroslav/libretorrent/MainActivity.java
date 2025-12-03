@@ -83,6 +83,17 @@ public class MainActivity extends ThemeActivity {
 
         Utils.enableEdgeToEdge(this);
 
+        pref = RepositoryHelper.getSettingsRepository(getApplicationContext());
+
+        // Check if this is first launch and redirect to onboarding
+        if (pref.firstLaunch()) {
+            Intent intent = new Intent(this, org.proninyaroslav.libretorrent.ui.onboarding.OnboardingActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         var intentAction = getIntent().getAction();
         if (intentAction != null && intentAction.equals(NotificationReceiver.NOTIFY_ACTION_SHUTDOWN_APP)) {
             finish();
@@ -124,7 +135,6 @@ public class MainActivity extends ThemeActivity {
                 }
             }
         });
-        pref = RepositoryHelper.getSettingsRepository(getApplicationContext());
 
         setContentView(R.layout.activity_main);
 

@@ -122,6 +122,11 @@
         </activity>
 
         <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".ui.errorreport.ErrorReportActivity"
             android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"
