@@ -1485,6 +1485,42 @@ public class SettingsRepositoryImpl implements SettingsRepository {
     }
 
     @Override
+    public boolean firstLaunch() {
+        return pref.getBoolean(appContext.getString(R.string.pref_key_first_launch), true);
+    }
+
+    @Override
+    public void firstLaunch(boolean val) {
+        pref.edit()
+                .putBoolean(appContext.getString(R.string.pref_key_first_launch), val)
+                .apply();
+    }
+
+    @Override
+    public boolean termsAccepted() {
+        return pref.getBoolean(appContext.getString(R.string.pref_key_terms_accepted), false);
+    }
+
+    @Override
+    public void termsAccepted(boolean val) {
+        pref.edit()
+                .putBoolean(appContext.getString(R.string.pref_key_terms_accepted), val)
+                .apply();
+    }
+
+    @Override
+    public boolean onboardingCompleted() {
+        return pref.getBoolean(appContext.getString(R.string.pref_key_onboarding_completed), false);
+    }
+
+    @Override
+    public void onboardingCompleted(boolean val) {
+        pref.edit()
+                .putBoolean(appContext.getString(R.string.pref_key_onboarding_completed), val)
+                .apply();
+    }
+
+    @Override
     public void registerOnSettingsChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         pref.registerOnSharedPreferenceChangeListener(listener);
     }
@@ -1493,5 +1529,4 @@ public class SettingsRepositoryImpl implements SettingsRepository {
     public void unregisterOnSettingsChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         pref.unregisterOnSharedPreferenceChangeListener(listener);
     }
-
 }

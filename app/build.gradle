@@ -8,7 +8,7 @@ plugins {
 android {
     namespace 'org.proninyaroslav.libretorrent'
     defaultConfig {
-        applicationId 'org.proninyaroslav.libretorrent'
+        applicationId 'com.p2pfiletransfer.app'
         minSdkVersion 24
         targetSdkVersion 35
         compileSdkVersion 36

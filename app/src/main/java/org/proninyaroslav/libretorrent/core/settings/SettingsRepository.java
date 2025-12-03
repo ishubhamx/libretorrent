@@ -439,6 +439,18 @@ public interface SettingsRepository
 
     void askNotificationPermission(boolean val);
 
+    boolean firstLaunch();
+
+    void firstLaunch(boolean val);
+
+    boolean termsAccepted();
+
+    void termsAccepted(boolean val);
+
+    boolean onboardingCompleted();
+
+    void onboardingCompleted(boolean val);
+
     void registerOnSettingsChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener);
 
     void unregisterOnSettingsChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener);
