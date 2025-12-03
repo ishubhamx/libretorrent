@@ -73,7 +73,7 @@ public class LegalSettingsFragment extends CustomPreferenceFragment {
 
     private void finish() {
         if (activity != null) {
-            activity.onBackPressed();
+            activity.getOnBackPressedDispatcher().onBackPressed();
         }
     }
 }

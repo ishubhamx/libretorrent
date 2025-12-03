@@ -221,6 +221,43 @@ public class DatabaseMigrationTest {
         return response;
     }
 
+    @Test
+    public void testMigration9to10_ErrorLog() throws IOException {
+        // Create database at version 9
+        var db = helper.createDatabase(TEST_DATABASE_NAME, 9);
+        db.close();
+
+        // Migrate to version 10
+        db = helper.runMigrationsAndValidate(
+                TEST_DATABASE_NAME,
+                10,
+                true,
+                DatabaseMigration.MIGRATION_9_10
+        );
+
+        // Verify ErrorLog table exists and has correct structure
+        var cursor = db.query("SELECT * FROM ErrorLog");
+        assertNotNull(cursor);
+        
+        // Check column names
+        String[] columnNames = cursor.getColumnNames();
+        assertNotNull(columnNames);
+        assertTrue(columnNames.length >= 8);
+        
+        // Verify specific columns exist
+        assertTrue(cursor.getColumnIndex("id") >= 0);
+        assertTrue(cursor.getColumnIndex("errorType") >= 0);
+        assertTrue(cursor.getColumnIndex("errorMessage") >= 0);
+        assertTrue(cursor.getColumnIndex("stackTrace") >= 0);
+        assertTrue(cursor.getColumnIndex("source") >= 0);
+        assertTrue(cursor.getColumnIndex("timestamp") >= 0);
+        assertTrue(cursor.getColumnIndex("retryCount") >= 0);
+        assertTrue(cursor.getColumnIndex("additionalData") >= 0);
+        
+        cursor.close();
+        db.close();
+    }
+
     private void addFeedChannel(SQLiteDatabase sqliteDb, ContentValues values) {
         assertNotEquals(-1, sqliteDb.replace("feeds", null, values));
     }

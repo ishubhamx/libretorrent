@@ -74,22 +74,30 @@ public class ErrorHandler {
             
             long timestamp = System.currentTimeMillis();
             
+            String finalStackTrace = stackTrace;
             ErrorLog errorLog = new ErrorLog(
                 0, // id will be auto-generated
                 errorType,
                 errorMessage,
-                stackTrace,
+                finalStackTrace,
                 source,
                 timestamp,
                 retryCount,
                 additionalData
             );
             
-            // Insert asynchronously
-            final String finalStackTrace = stackTrace;
-            AppDatabase.getInstance(context)
-                .errorLogDao()
-                .insert(errorLog);
+            // Insert asynchronously using RxJava
+            io.reactivex.rxjava3.core.Completable.fromCallable(() -> {
+                        AppDatabase.getInstance(context)
+                            .errorLogDao()
+                            .insert(errorLog);
+                        return true;
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(
+                        () -> {}, // onComplete
+                        error -> Log.e(TAG, "Failed to insert error log", error)
+                    );
             
             // Also log to Android logs for immediate debugging
             Log.e(TAG, String.format("[%s] %s: %s (retry: %d)", source, errorType, errorMessage, retryCount), throwable);
@@ -176,9 +184,18 @@ public class ErrorHandler {
         try {
             long cutoffTime = System.currentTimeMillis() - (ERROR_LOG_RETENTION_DAYS * 24 * 60 * 60 * 1000);
             
-            AppDatabase.getInstance(context)
-                .errorLogDao()
-                .deleteOldErrors(cutoffTime);
+            // Delete asynchronously using RxJava
+            io.reactivex.rxjava3.core.Completable.fromCallable(() -> {
+                        AppDatabase.getInstance(context)
+                            .errorLogDao()
+                            .deleteOldErrors(cutoffTime);
+                        return true;
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(
+                        () -> {}, // onComplete
+                        error -> Log.e(TAG, "Failed to cleanup old errors", error)
+                    );
                 
         } catch (Exception e) {
             Log.e(TAG, "Failed to cleanup old errors", e);
