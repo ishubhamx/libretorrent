@@ -43,6 +43,7 @@ public class OnboardingActivity extends ThemeActivity
 
     private SettingsRepository pref;
     private OnboardingSetupFragment setupFragment;
+    private androidx.activity.OnBackPressedCallback onBackPressedCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,16 @@ public class OnboardingActivity extends ThemeActivity
         setContentView(R.layout.activity_onboarding);
 
         pref = RepositoryHelper.getSettingsRepository(getApplicationContext());
+
+        // Disable back button during onboarding
+        onBackPressedCallback = new androidx.activity.OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Prevent back navigation during onboarding
+                // User must complete or decline terms
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
 
         // Check if terms have been accepted
         if (!pref.termsAccepted()) {
@@ -95,9 +106,11 @@ public class OnboardingActivity extends ThemeActivity
 
     @Override
     public void onChooseStorageLocation() {
-        // For now, we'll use the existing storage preference
-        // In a full implementation, this would open a directory picker
-        Toast.makeText(this, "Storage selection coming soon", Toast.LENGTH_SHORT).show();
+        // Placeholder - storage selection will be added in future iteration
+        // For now, users can change it in settings after onboarding
+        Toast.makeText(this, 
+            "You can configure storage location in Settings after completing setup", 
+            Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -117,11 +130,5 @@ public class OnboardingActivity extends ThemeActivity
                 .beginTransaction()
                 .replace(R.id.onboarding_container, fragment)
                 .commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Prevent going back during onboarding
-        // User must complete or decline terms
     }
 }

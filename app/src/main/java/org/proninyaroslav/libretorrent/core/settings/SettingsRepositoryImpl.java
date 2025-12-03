@@ -1529,6 +1529,4 @@ public class SettingsRepositoryImpl implements SettingsRepository {
     public void unregisterOnSettingsChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         pref.unregisterOnSharedPreferenceChangeListener(listener);
     }
-
-
 }
